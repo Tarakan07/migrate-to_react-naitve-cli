@@ -1,2 +1,3 @@
 import ExpoFont from "./expoFonts/expoFonts";
-export { ExpoFont };
+import ExpoDevice from "./expoDevice/expoDevice";
+export { ExpoFont, ExpoDevice };

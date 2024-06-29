@@ -5,13 +5,13 @@
  * @format
  */
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Text, View } from "react-native";
-import { ExpoFont } from "./src/components";
+import { Text, TouchableOpacity, View } from "react-native";
+import { ExpoFont, ExpoDevice } from "./src/components";
 const Stack = createStackNavigator();
 function App() {
   return (
@@ -20,7 +20,10 @@ function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Group>
+              <Stack.Screen name={"Main screen"} component={MainScreen} />
+
               <Stack.Screen name={"Expo font"} component={ExpoFont} />
+              <Stack.Screen name={"Expo device"} component={ExpoDevice} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
@@ -30,8 +33,29 @@ function App() {
 }
 
 export default App;
-
-// "expo-font": "~11.10.3",
+const MainScreen = () => {
+  const navigation = useNavigation<any>();
+  return (
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Expo font");
+        }}
+      >
+        <Text>Expo font</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Expo device");
+        }}
+      >
+        <Text>Expo device</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+// "expo-font": "~11.10.3",++++++++++++
+// "expo-device": "~5.9.3",
 
 // "expo-apple-authentication": "~6.3.0",
 // "expo-application": "~5.8.3",
@@ -39,7 +63,6 @@ export default App;
 // "expo-build-properties": "~0.11.1",
 // "expo-clipboard": "~5.0.1",
 // "expo-constants": "~15.4.5",
-// "expo-device": "~5.9.3",
 // "expo-file-system": "~16.0.8",
 // "expo-haptics": "~12.8.1",
 // "expo-image-picker": "~14.7.1",

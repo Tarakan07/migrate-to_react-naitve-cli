@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import WithGoBack from "../../libs/HOC/withGoBack";
 const ExpoFont = () => {
   return (
     <View style={styles.container}>
@@ -26,4 +27,4 @@ const ExpoFont = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignContent: "center" },
 });
-export default ExpoFont;
+export default WithGoBack(ExpoFont);
