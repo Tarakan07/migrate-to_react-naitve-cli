@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import WithGoBack from "../../libs/HOC/withGoBack";
 import Share, { ShareOptions } from "react-native-share";
-import RNFS from "react-native-fs";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 
 const imageUrl =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ6xwjnppV9SVGxMCInVgw5IjExUmqPznozQ&s";
@@ -54,11 +54,17 @@ const ExpoSharingFileSystem = () => {
         }
       }
 
+      const directoryExists = await RNFS.exists(RNFS.PicturesDirectoryPath);
+      if (!directoryExists) {
+        await RNFS.mkdir(RNFS.PicturesDirectoryPath);
+      }
+
       const fileName = imageUrl
         .split("/")
         .pop()
         .replace(/[^a-zA-Z0-9.-]/g, "_");
-      const downloadDest = `${RNFS.PicturesDirectoryPath}/${fileName}`;
+
+      const downloadDest = `${RNFS.PicturesDirectoryPath}/${fileName}.jpeg`;
 
       try {
         const { promise } = RNFS.downloadFile({
@@ -71,6 +77,7 @@ const ExpoSharingFileSystem = () => {
           "Download Successful!",
           "Image has been downloaded to your gallery"
         );
+        handleShare();
       } catch (error) {
         console.error("Download error:", error);
         Alert.alert(
