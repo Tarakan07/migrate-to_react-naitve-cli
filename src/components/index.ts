@@ -1,4 +1,5 @@
 import ExpoFont from "./expoFonts/expoFonts";
 import ExpoDevice from "./expoDevice/expoDevice";
 import ExpoSharingFileSystem from "./expoSharing/expoSharingFileSystem";
-export { ExpoFont, ExpoDevice, ExpoSharingFileSystem };
+import expoHaptics from "./expoHaptics/expoHaptics";
+export { ExpoFont, ExpoDevice, ExpoSharingFileSystem, expoHaptics };
