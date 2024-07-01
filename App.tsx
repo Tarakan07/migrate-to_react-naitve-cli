@@ -17,6 +17,7 @@ import {
   ExpoSharingFileSystem,
   expoHaptics,
   ExpoImagePicker,
+  ExpoClipboard,
 } from "./src/components";
 const Stack = createStackNavigator();
 const routes = {
@@ -26,6 +27,7 @@ const routes = {
   expoSharing: "expoSharing_fileSystem",
   expoHaptics: "expoHaptics",
   expoImagePicker: "expoImagePicker",
+  expoClipboard: "expoClipboard",
 };
 function App() {
   return (
@@ -47,6 +49,10 @@ function App() {
                 name={routes.expoImagePicker}
                 component={ExpoImagePicker}
               />
+              <Stack.Screen
+                name={routes.expoClipboard}
+                component={ExpoClipboard}
+              />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
@@ -65,6 +71,7 @@ const MainScreen = () => {
       <MyNavigate {...{ navigation, name: routes.expoSharing }} />
       <MyNavigate {...{ navigation, name: routes.expoHaptics }} />
       <MyNavigate {...{ navigation, name: routes.expoImagePicker }} />
+      <MyNavigate {...{ navigation, name: routes.expoClipboard }} />
     </View>
   );
 };
@@ -83,6 +90,7 @@ const MyNavigate = ({ navigation, name }) => (
 // "expo-file-system": "~16.0.8",
 // "expo-haptics": "~12.8.1",
 // "expo-image-picker": "~14.7.1",
+// "expo-clipboard": "~5.0.1",
 
 //-------------------------
 
@@ -90,7 +98,6 @@ const MyNavigate = ({ navigation, name }) => (
 // "expo-application": "~5.8.3",
 // "expo-blur": "~12.9.2",
 // "expo-build-properties": "~0.11.1",
-// "expo-clipboard": "~5.0.1",
 // "expo-constants": "~15.4.5",
 // "expo-localization": "~14.8.3",
 // "expo-location": "~16.5.5",
