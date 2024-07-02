@@ -4,6 +4,7 @@ import ExpoSharingFileSystem from "./expoSharing/expoSharingFileSystem";
 import expoHaptics from "./expoHaptics/expoHaptics";
 import ExpoImagePicker from "./expoImagePicker/expoImagePicker";
 import ExpoClipboard from "./expoClipboard/expoClipboard";
+import ExpoLocalization from "./expoLocalization/expoLocalization";
 export {
   ExpoFont,
   ExpoDevice,
@@ -11,4 +12,5 @@ export {
   expoHaptics,
   ExpoImagePicker,
   ExpoClipboard,
+  ExpoLocalization,
 };
