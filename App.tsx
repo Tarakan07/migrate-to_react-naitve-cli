@@ -19,11 +19,8 @@ import {
   expoHaptics,
   ExpoImagePicker,
   ExpoClipboard,
+  MiniChat,
 } from "./src/components";
-
-// const lastResolved = async (promises: Promise[], defaultValue: U): Promise => {}
-
-// Написать реализацию функции выше: нужно вернуть последний по времени зарезолвившийся промис из массива promises, если все зареджектились - вернуть defaultValue.
 
 const Stack = createStackNavigator();
 const routes = {
@@ -35,75 +32,11 @@ const routes = {
   expoImagePicker: "expoImagePicker",
   expoClipboard: "expoClipboard",
   expoLocalization: "expoLocalization",
+  //another
+  miniChat: "miniChat",
 };
+
 function App() {
-  const fetch1 = () =>
-    new Promise((res, rej) => {
-      setTimeout(() => {
-        res("fetch1");
-      }, 1000);
-    });
-  const fetch2 = () =>
-    new Promise((res, rej) => {
-      setTimeout(() => {
-        rej(new Error("fetch2"));
-      }, 5000);
-    });
-  const fetch3 = () =>
-    new Promise((res, rej) => {
-      setTimeout(() => {
-        res("fetch3");
-      }, 3000);
-    });
-  const fetch4 = () =>
-    new Promise((res, rej) => {
-      setTimeout(() => {
-        rej("fetch4");
-      }, 4000);
-    });
-  const fetch5 = () =>
-    new Promise((res, rej) => {
-      setTimeout(() => {
-        res("fetch45");
-      }, 5000);
-    });
-
-  type TPromises<P> = () => Promise<P>;
-  type TParams<P, D> = {
-    promises: TPromises<P>[];
-    defaultValue: D;
-  };
-  const lastResolved = async <P, D>({
-    promises,
-    defaultValue,
-  }: TParams<P, D>): Promise<P> => {
-    let current: number = 0;
-    let currentResolve = null;
-    const fetch = async (current: number) => {
-      try {
-        currentResolve = await promises[current]();
-      } catch (e) {}
-
-      return current === promises.length - 1
-        ? currentResolve
-        : fetch(current + 1);
-    };
-    const answer = await fetch(current);
-    return answer ? answer : defaultValue;
-  };
-
-  lastResolved({ promises: [fetch2], defaultValue: "rej" });
-  // .then((e) => {
-  //   console.log(e);
-  // })
-  // .catch((e) => {
-  //   console.log(e);
-  // });
-  // const lastResolved = async (
-  //   promises: Promise[],
-  //   defaultValue: U
-  // ): Promise => {};
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
@@ -131,6 +64,14 @@ function App() {
                 name={routes.expoLocalization}
                 component={ExpoLocalization}
               />
+              {/* another */}
+              <Stack.Screen
+                name={routes.miniChat}
+                component={MiniChat}
+                options={{
+                  header: () => null,
+                }}
+              />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
@@ -151,6 +92,8 @@ const MainScreen = () => {
       <MyNavigate {...{ navigation, name: routes.expoImagePicker }} />
       <MyNavigate {...{ navigation, name: routes.expoClipboard }} />
       <MyNavigate {...{ navigation, name: routes.expoLocalization }} />
+      <Text style={{ marginVertical: 30 }}>Another hernya</Text>
+      <MyNavigate {...{ navigation, name: routes.miniChat }} />
     </View>
   );
 };

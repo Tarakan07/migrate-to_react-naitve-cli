@@ -5,6 +5,7 @@ import expoHaptics from "./expoHaptics/expoHaptics";
 import ExpoImagePicker from "./expoImagePicker/expoImagePicker";
 import ExpoClipboard from "./expoClipboard/expoClipboard";
 import ExpoLocalization from "./expoLocalization/expoLocalization";
+import MiniChat from "./miniChat/miniChat";
 export {
   ExpoFont,
   ExpoDevice,
@@ -13,4 +14,5 @@ export {
   ExpoImagePicker,
   ExpoClipboard,
   ExpoLocalization,
+  MiniChat,
 };
