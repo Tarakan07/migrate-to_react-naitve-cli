@@ -65,13 +65,7 @@ function App() {
                 component={ExpoLocalization}
               />
               {/* another */}
-              <Stack.Screen
-                name={routes.miniChat}
-                component={MiniChat}
-                options={{
-                  header: () => null,
-                }}
-              />
+              <Stack.Screen name={routes.miniChat} component={MiniChat} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
